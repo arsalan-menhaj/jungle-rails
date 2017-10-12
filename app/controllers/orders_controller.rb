@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @user_email = User.find(session[:user_id]).email
   end
 
   def create
@@ -36,6 +37,7 @@ class OrdersController < ApplicationController
   end
 
   def create_order(stripe_charge)
+    user = User.find(session[:user_id])
     order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_total,
@@ -52,7 +54,13 @@ class OrdersController < ApplicationController
         )
       end
     end
-    order.save!
+
+    #order.save!
+
+    if order.save!
+      UserMailer.order_receipt(user, order).deliver_later
+    end
+
     order
   end
 

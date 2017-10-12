@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Dear, <%= @user.first_name %></h1>
+    <p>
+      Thank you for your purchase!
+      Your order (<%= @order.id %>) is as follows: <br>
+      <% @order.line_items.each do |line_item| %>
+        <p><%= pluralize(line_item.quantity, 'sub-order') %> of <%= line_item.product.name %></p>
+      <% end %>
+    </p>
+    <p>Thank you again and have a great day!</p>
+  </body>
+</html>

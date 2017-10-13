@@ -1,6 +1,6 @@
 <div>
-  <p> <strong> <%= User.find(review.user_id).first_name + ' ' + User.find(review.user_id).last_name =%> </strong> </p>
-  <p> <%= review.description %> </p>
-  <p> Rating: <%= review.rating %>
-  <br>
+  <p> <strong> <%= User.find(review.user_id).first_name + ' ' + User.find(review.user_id).last_name =%> </strong> <br>
+    <%= review.description %> <br>
+    Rating: <%= review.rating %>
+  </p>
 </div>

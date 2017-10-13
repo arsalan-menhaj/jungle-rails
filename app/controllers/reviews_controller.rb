@@ -3,8 +3,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find_by(product_id: params[:id])
-    @product_id = params[:id]
+    @product = Product.find(params[:product_id])
+    @reviews = @product.reviews
   end
 
   def create
@@ -20,6 +20,16 @@ class ReviewsController < ApplicationController
     puts review.save
     if review.save
       redirect_to ('/products/' + @review_data[:product_id].to_s)
+    else
+      redirect_to '/'
+    end
+  end
+
+  def destroy
+    @review = Review.find_by(id: params[:id])
+
+    if @review.destroy
+      redirect_to ('/products/' + params[:product_id].to_s)
     else
       redirect_to '/'
     end

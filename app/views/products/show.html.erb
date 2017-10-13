@@ -2,7 +2,7 @@
 
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
-    <h3>Average User Rating: <%= @average_rating %> out of 5</h3>
+    <h3>Average User Rating: <%= @average_rating %> out of 5.0</h3>
   </header>
 
   <article class="product-detail">
@@ -31,31 +31,54 @@
 
   <br>
 
-  <section class="new-review">
-    <%= form_for :review, url: '/products/' + params[:id] + '/reviews' do |f| %>
-      <p>
-        Tell us your thoughts! <%= f.text_field :description %>
-      </p>
-      <p>
-        Please provide a rating (out of 5): <%= f.text_field :rating %>
-      </p>
-      <input type="hidden" name="review[product_id]" value="<%= params[:id] %>">
-      <%= f.submit "Submit" %>
+  <% if session[:user_id] %>
+    <% if !@product.reviews.where(user_id: session[:user_id])[0] %>
+      <section class="new-review">
+        <h3>Write a Review for this Product:</h3>
+        <%= form_for :review, url: '/products/' + params[:id] + '/reviews '  do |f| %>
+          <p>
+            Tell us your thoughts!
+          </p>
+          <%= f.text_area :description %>
+          <p>
+            Please provide a rating (out of 5):
+          </p>
+          <%= f.text_field :rating %>
+          <input type="hidden" name="review[product_id]" value="<%=   params[ :id] %>">
+          <%= f.submit "Submit" %>
+        <% end %>
+      </section>
+      <br>
+    <% else %>
+      <header class="reviews-header">
+        <h3>
+          Your Review:
+        </h3>
+      </header>
+
+      <div class="row current-user-product-review">
+        <div class="col-sm-8">
+          <%= render @review %>
+          <%= link_to 'Delete Review', product_review_path(@product.id, @review.id), method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      </div>
     <% end %>
-  </section>
+  <% end %>
 
 
   <header class="reviews-header">
-    <h2>
-      Reviews
-    </h2>
+    <h3>
+      Past Reviews:
+    </h3>
   </header>
-
-  <br>
 
   <div class="row product-reviews">
     <div class="col-sm-8">
-      <%= render @product.reviews %>
+      <% if @product.reviews[0] %>
+        <%= render @product.reviews %>
+      <% else %>
+        This product has no reviews yet.
+      <% end %>
     </div>
   </div>
 

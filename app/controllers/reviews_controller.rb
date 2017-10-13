@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
 
   def show
     @product = Product.find(params[:product_id])
-    @reviews = @product.reviews
+    @reviews = @product.reviews.order(created_at: :desc)
   end
 
   def create

@@ -33,6 +33,7 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 
 puts "Re-creating Products ..."
 
+LineItem.destroy_all
 Product.destroy_all
 
 cat1.products.create!({
@@ -130,6 +131,21 @@ cat3.products.create!({
   image: open_asset('furniture3.jpg'),
   quantity: 23,
   price: 2_483.75
+})
+
+# Test reviews
+Review.create({
+  product_id: 49,
+  user_id: 1,
+  description: "This is a pretty cool item. Might buy second.",
+  rating: 5
+})
+
+Review.create({
+  product_id: 24,
+  user_id: 2,
+  description: Faker::Hipster.paragraph(4),
+  rating: 3
 })
 
 puts "DONE!"

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :products, only: [:index, :show] do
-    resources :reviews
+    resources :reviews, only: [:create]
   end
 
   resources :categories, only: [:index, :show]

@@ -2,6 +2,7 @@
 
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
+    <h3>Average User Rating: <%= @average_rating %> out of 5</h3>
   </header>
 
   <article class="product-detail">
@@ -28,9 +29,32 @@
 
   </article>
 
+  <br>
+
+  <section class="new-review">
+    <%= form_for :review, url: '/products/' + params[:id] + '/reviews' do |f| %>
+      <p>
+        Tell us your thoughts! <%= f.text_field :description %>
+      </p>
+      <p>
+        Please provide a rating (out of 5): <%= f.text_field :rating %>
+      </p>
+      <input type="hidden" name="review[product_id]" value="<%= params[:id] %>">
+      <%= f.submit "Submit" %>
+    <% end %>
+  </section>
+
+
+  <header class="reviews-header">
+    <h2>
+      Reviews
+    </h2>
+  </header>
+
+  <br>
+
   <div class="row product-reviews">
     <div class="col-sm-8">
-      <br>
       <%= render @product.reviews %>
     </div>
   </div>

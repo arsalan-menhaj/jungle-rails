@@ -13950,11 +13950,6 @@ var o,i,s,a,u;return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationDat
 
 
 
-$(document).ready( function {
-  (".new-review-toggle").click( function {
-    (".new-review").slideToggle()
-  });
-});
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //

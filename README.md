@@ -29,5 +29,6 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Screenshots
 !["Homepage"](https://github.com/arsalan-menhaj/jungle-rails/blob/master/public/assets/Screen%20Shot%202017-10-13%20at%206.27.07%20PM.png)
-!["Product Page - Logged In"](https://github.com/arsalan-menhaj/jungle-rails/blob/master/public/assets/Screen%20Shot%202017-10-13%20at%206.31.51%20PM.png)
+!["Product Page - Logged In"](https://github.com/arsalan-menhaj/jungle-rails/blob/master/public/assets/Screen%20Shot%202017-10-13%20at%206.31.51%20PM.png
+)
 

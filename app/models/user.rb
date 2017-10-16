@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   def self.authenticate_with_credentials (email, password)
     # Removes whitespace from email, and turn letters lowercase
     email.gsub!(/\s+/, '')
-    email.downcase
+    email.downcase!
 
     if User.find_by(email: email)
       User.find_by(email: email).authenticate(password)

@@ -82,6 +82,10 @@ RSpec.describe User, type: :model do
       expect(User.authenticate_with_credentials('  green@lantern.com', '12345678')).to eq(@user)
     end
 
+    it "authenticates registered user even with uppercase letters in email" do
+      expect(User.authenticate_with_credentials('Green@Lantern.com', '12345678')).to eq(@user)
+    end
+
     it "fails authentication with wrong password" do
       User.authenticate_with_credentials('green@lantern.com', '12345999').should be false
     end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "AddToCarts", type: :feature do
+RSpec.feature "AddToCarts", type: :feature  do
   #SETUP
 
   before :each do
@@ -19,8 +19,8 @@ RSpec.feature "AddToCarts", type: :feature do
 
   scenario "They click on the Add button for the first product" do
     visit root_path
-    first("article.product").click_on "Add"
-
-    expect(page.find("ul.navbar-right")).to have_content "My Cart (1)"
+    first("article.product").click_link "Add"
+    save_screenshot
+    expect(page).to have_content "My Cart (1)"
   end
 end

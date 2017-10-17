@@ -41,7 +41,7 @@
         </li>
         <li class="user-cart">
           <%= link_to cart_path do %>
-            <%= fa_icon "shopping-cart" %> My Cart (<%= cart.size %>)
+            <%= fa_icon "shopping-cart" %> My Cart (<%= cart.sum { |item| item[1]["quantity"] } %>)
           <% end %>
           <% if current_user %>
           <li>

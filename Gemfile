@@ -49,6 +49,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.5'
+  gem 'capybara'
+  gem 'poltergeist'
 end
 
 group :development do
